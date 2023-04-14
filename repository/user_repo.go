@@ -18,7 +18,7 @@ import (
 func CheckCredential(username string, db *sql.DB) any {
 	var user model.User
 
-	query := "SELECT password FROM users WHERE username = $1;"
+	query := "SELECT username, password FROM users WHERE username = $1;"
 	row := db.QueryRow(query, username)
 
 	if err := row.Scan(&user.Username, &user.Password); err != nil {
