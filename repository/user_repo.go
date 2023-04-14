@@ -7,19 +7,19 @@ import (
 	"github.com/rafialariq/auth-jwt/model"
 )
 
-type UserRepo interface {
-	LoginRepo(username string) any
-}
+// type UserRepo interface {
+// 	CheckCredential(username string) any
+// }
 
-type userRepo struct {
-	db *sql.DB
-}
+// type userRepo struct {
+// 	db *sql.DB
+// }
 
-func (u *userRepo) LoginRepo(username string) any {
+func CheckCredential(username string, db *sql.DB) any {
 	var user model.User
 
 	query := "SELECT password FROM users WHERE username = $1;"
-	row := u.db.QueryRow(query, username)
+	row := db.QueryRow(query, username)
 
 	if err := row.Scan(&user.Username, &user.Password); err != nil {
 		log.Println(err)
