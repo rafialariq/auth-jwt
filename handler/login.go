@@ -28,8 +28,8 @@ func LoginHandler(c *gin.Context, db *sql.DB, jwtKey any) {
 		return
 	}
 
-	result := repository.CheckCredential(user.Username, db)
-	recUser := result.(model.User)
+	recUser := repository.CheckCredential(user.Username, db)
+	// recUser := result.(model.User)
 
 	if recUser.Username == user.Username && recUser.Password == user.Password {
 
