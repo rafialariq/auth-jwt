@@ -13,7 +13,7 @@ func AuthMiddleware(jwtKey any) gin.HandlerFunc {
 		tokenString := c.GetHeader("Authorization")
 
 		if tokenString == "" {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized pertama"})
 			c.Abort()
 			return
 		}
@@ -23,7 +23,7 @@ func AuthMiddleware(jwtKey any) gin.HandlerFunc {
 		})
 
 		if err != nil || !token.Valid {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized kedua"})
 			c.Abort()
 			return
 		}
